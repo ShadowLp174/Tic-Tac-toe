@@ -51,7 +51,7 @@
       /*  Yes I know this can be a lot more optimised
           but I already had similar code from an old Python project and I
           tried to optimise it but it didn't work
-          I could use ||  */
+          I could use || but cba */
           if (bord[1]==bord[2] && bord[1]==bord[3] && bord[1]!="-") won()
           else if (bord[4]==bord[5] && bord[4]==bord[6] && bord[4]!="-") won()
           else if (bord[7]==bord[8] && bord[7]==bord[9] && bord[7]!="-") won()
@@ -60,11 +60,16 @@
           else if (bord[3]==bord[6] && bord[3]==bord[9] && bord[3]!="-") won()
           else if (bord[1]==bord[5] && bord[1]==bord[9] && bord[1]!="-") won()
           else if (bord[3]==bord[5] && bord[3]==bord[7] && bord[3]!="-") won()
+          else if (bord.includes('-')==false) {
+            win=true
+            document.getElementById("turn").innerHTML="Draw"
+          }
           else {
             if (turn=="O") turn="X"
             else turn="O"
             document.getElementById("turn").innerHTML=turn +"'s turn"
           }
+
         }
       }
     </script>
@@ -74,19 +79,19 @@
     <h1 id="turn">X's turn</h1>
     <table>
         <tr>
-            <td> <img src="blank.png" id='1' onclick="grid('1')"> </td>
-            <td> <img src="blank.png" id='2' onclick="grid('2')"> </td>
-            <td> <img src="blank.png" id='3' onclick="grid('3')"> </td>
+            <td> <img src="assets/blank.png" id='1' onclick="grid('1')"> </td>
+            <td> <img src="assets/blank.png" id='2' onclick="grid('2')"> </td>
+            <td> <img src="assets/blank.png" id='3' onclick="grid('3')"> </td>
         </tr>
         <tr>
-            <td> <img src="blank.png" id='4' onclick="grid('4')"> </td>
-            <td> <img src="blank.png" id='5' onclick="grid('5')"> </td>
-            <td> <img src="blank.png" id='6' onclick="grid('6')"> </td>
+            <td> <img src="assets/blank.png" id='4' onclick="grid('4')"> </td>
+            <td> <img src="assets/blank.png" id='5' onclick="grid('5')"> </td>
+            <td> <img src="assets/blank.png" id='6' onclick="grid('6')"> </td>
         </tr>
         <tr>
-            <td> <img src="blank.png" id='7' onclick="grid('7')"> </td>
-            <td> <img src="blank.png" id='8' onclick="grid('8')"> </td>
-            <td> <img src="blank.png" id='9' onclick="grid('9')"> </td>
+            <td> <img src="assets/blank.png" id='7' onclick="grid('7')"> </td>
+            <td> <img src="assets/blank.png" id='8' onclick="grid('8')"> </td>
+            <td> <img src="assets/blank.png" id='9' onclick="grid('9')"> </td>
         </tr>
     </table>
 </body>
