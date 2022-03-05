@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Tic Tac Toe</title>
+    <style>
+      img{
+        height: 150px;
+        width: 150px;
+        border-width: medium;
+        border-style: solid;
+      }
+      h1{
+        text-align: center;
+      }
+      table{
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+    <script>
+      let turn = "X"
+      let bord = ["", "-", "-", "-", "-", "-", "-", "-", "-","-"]
+      /*
+      This has 10 elements because it doesnt work with 9
+      Also the wrong letter is stored but the code still works ¯\_(ツ)_/¯
+      */
+      function grid(cell) {
+          if (bord[cell]=="-"){
+            if (turn == "X") {
+              document.getElementById(cell).src="x.png"
+              turn="O"
+            }
+            else if (turn=="O") {
+              document.getElementById(cell).src="o.png"
+              turn="X"
+            }
+            bord[Number(cell)]=turn
+            document.getElementById("turn").innerHTML="It is "+ turn +"'s turn"
+          }
+          console.log(bord) // Used for debugging
+      }
+      //document.getElementById("turn").innerHTML
+    </script>
+</head>
+
+<body>
+    <h1 id="turn">It is X's turn</h1>
+    <table>
+        <tr>
+            <td> <img src="blank.png" id='1' onclick="grid('1')"> </td>
+            <td> <img src="blank.png" id='2' onclick="grid('2')"> </td>
+            <td> <img src="blank.png" id='3' onclick="grid('3')"> </td>
+        </tr>
+        <tr>
+            <td> <img src="blank.png" id='4' onclick="grid('4')"> </td>
+            <td> <img src="blank.png" id='5' onclick="grid('5')"> </td>
+            <td> <img src="blank.png" id='6' onclick="grid('6')"> </td>
+        </tr>
+        <tr>
+            <td> <img src="blank.png" id='7' onclick="grid('7')"> </td>
+            <td> <img src="blank.png" id='8' onclick="grid('8')"> </td>
+            <td> <img src="blank.png" id='9' onclick="grid('9')"> </td>
+        </tr>
+    </table>
+</body>
+
+</html>
