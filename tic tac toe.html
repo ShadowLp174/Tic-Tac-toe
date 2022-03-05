@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Tic Tac Toe</title>
+
     <style>
       img{
         height: 150px;
@@ -14,55 +15,78 @@
       }
       h1{
         text-align: center;
+        font-family: fantasy;
       }
       table{
         margin-left: auto;
         margin-right: auto;
       }
+      body{
+        background-image: radial-gradient(yellow 30%,red);
+      }
     </style>
+
     <script>
       let turn = "X"
-      let bord = ["", "-", "-", "-", "-", "-", "-", "-", "-","-"]
-      /*
-      This has 10 elements because it doesnt work with 9
-      Also the wrong letter is stored but the code still works ¯\_(ツ)_/¯
-      */
-      function grid(cell) {
-          if (bord[cell]=="-"){
-            if (turn == "X") {
-              document.getElementById(cell).src="x.png"
-              turn="O"
-            }
-            else if (turn=="O") {
-              document.getElementById(cell).src="o.png"
-              turn="X"
-            }
-            bord[Number(cell)]=turn
-            document.getElementById("turn").innerHTML="It is "+ turn +"'s turn"
-          }
-          console.log(bord) // Used for debugging
+      let bord = ["", "-", "-", "-", "-", "-", "-", "-", "-", "-"]
+      // This has 10 elements because I couldn't get it to work with 9
+      let win = false
+
+      function won() {
+        console.log(turn+"wins")
+        document.getElementById("turn").innerHTML=turn +" wins!"
+        win=true
       }
-      //document.getElementById("turn").innerHTML
+
+      function grid(cell) {
+        if (bord[cell]=="-" && win==false){
+          if (turn == "X") {
+            document.getElementById(cell).src="assets/x.png"
+            bord[Number(cell)]="X"
+          }
+          else if (turn=="O") {
+            document.getElementById(cell).src="assets/o.png"
+            bord[Number(cell)]="O"
+          }
+      /*  Yes I know this can be a lot more optimised
+          but I already had similar code from an old Python project and I
+          tried to optimise it but it didn't work
+          I could use ||  */
+          if (bord[1]==bord[2] && bord[1]==bord[3] && bord[1]!="-") won()
+          else if (bord[4]==bord[5] && bord[4]==bord[6] && bord[4]!="-") won()
+          else if (bord[7]==bord[8] && bord[7]==bord[9] && bord[7]!="-") won()
+          else if (bord[1]==bord[4] && bord[1]==bord[7] && bord[1]!="-") won()
+          else if (bord[2]==bord[5] && bord[2]==bord[8] && bord[2]!="-") won()
+          else if (bord[3]==bord[6] && bord[3]==bord[9] && bord[3]!="-") won()
+          else if (bord[1]==bord[5] && bord[1]==bord[9] && bord[1]!="-") won()
+          else if (bord[3]==bord[5] && bord[3]==bord[7] && bord[3]!="-") won()
+          else {
+            if (turn=="O") turn="X"
+            else turn="O"
+            document.getElementById("turn").innerHTML=turn +"'s turn"
+          }
+        }
+      }
     </script>
 </head>
 
 <body>
-    <h1 id="turn">It is X's turn</h1>
+    <h1 id="turn">X's turn</h1>
     <table>
         <tr>
-            <td> <img src="blank.png" id='1' onclick="grid('1')"> </td>
-            <td> <img src="blank.png" id='2' onclick="grid('2')"> </td>
-            <td> <img src="blank.png" id='3' onclick="grid('3')"> </td>
+            <td> <img src="assets/blank.png" id='1' onclick="grid('1')"> </td>
+            <td> <img src="assets/blank.png" id='2' onclick="grid('2')"> </td>
+            <td> <img src="assets/blank.png" id='3' onclick="grid('3')"> </td>
         </tr>
         <tr>
-            <td> <img src="blank.png" id='4' onclick="grid('4')"> </td>
-            <td> <img src="blank.png" id='5' onclick="grid('5')"> </td>
-            <td> <img src="blank.png" id='6' onclick="grid('6')"> </td>
+            <td> <img src="assets/blank.png" id='4' onclick="grid('4')"> </td>
+            <td> <img src="assets/blank.png" id='5' onclick="grid('5')"> </td>
+            <td> <img src="assets/blank.png" id='6' onclick="grid('6')"> </td>
         </tr>
         <tr>
-            <td> <img src="blank.png" id='7' onclick="grid('7')"> </td>
-            <td> <img src="blank.png" id='8' onclick="grid('8')"> </td>
-            <td> <img src="blank.png" id='9' onclick="grid('9')"> </td>
+            <td> <img src="assets/blank.png" id='7' onclick="grid('7')"> </td>
+            <td> <img src="assets/blank.png" id='8' onclick="grid('8')"> </td>
+            <td> <img src="assets/blank.png" id='9' onclick="grid('9')"> </td>
         </tr>
     </table>
 </body>
